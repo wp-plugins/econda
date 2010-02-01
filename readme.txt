@@ -15,12 +15,12 @@ For your Wordpress blog you can choose between the econda Site Monitor or econda
 For further informations visit [econda website](http://www.econda.de/english.html)
 Try the econda Site Monitor now free of charge for 14 days! [Test now!](http://www.econda.de/produkte/site-monitor/testen.html)
 
-Dieses Plugin ermöglicht econda Analysen auf Ihrer Seite.
+Dieses Plugin ermoeglicht econda Analysen auf Ihrer Seite.
 
-econda ist einer der führenden Spezialisten für intelligente Web-Analysen.
-Für Ihren Wordpress Blog stehen der econda Site Monitor und der econda Click Monitor für Sie bereit.
+econda ist einer der fuehrenden Spezialisten fuer intelligente Web-Analysen.
+Fuer Ihren Wordpress Blog stehen der econda Site Monitor und der econda Click Monitor fuer Sie bereit.
 Weitere Informationen finden Sie auf der [econda Webseite](http://www.econda.de)
-Testen Sie jetzt unverbindlich und kostenlos für 14 Tage den econda Site Monitor! [Jetzt testen!](http://www.econda.de/produkte/site-monitor/testen.html)
+Testen Sie jetzt unverbindlich und kostenlos fuer 14 Tage den econda Site Monitor! [Jetzt testen!](http://www.econda.de/produkte/site-monitor/testen.html)
 
 == Changelog ==
 
