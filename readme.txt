@@ -2,7 +2,7 @@
 Contributors: Edgar Gaiser
 Tags: econda, controlling, analyses, statistics, seo, monitoring
 Requires at least: 2.6
-Tested up to: 2.9.1
+Tested up to: 2.9.2
 
 econda Web Controlling. This plugin enables econda analytics on your site.
 
@@ -24,6 +24,10 @@ Testen Sie jetzt unverbindlich und kostenlos f&uuml;r 14 Tage den econda Site Mo
 
 
 == Changelog ==
+
+= 1.0.0 =
+
+* final release
 
 = 0.9.0 =
 
