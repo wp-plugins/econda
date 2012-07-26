@@ -1,10 +1,10 @@
 <?php
 /*******************************************************************************
 * EMOS PHP Bib 2
-* $Id: emos.php,v 1.16 2009/12/16 15:02:00 egaiser Exp $
+* $Id: emos.php,v 1.19 2011/07/08 14:23:00 egaiser Exp $
 ********************************************************************************
 
-Copyright (c) 2004 - 2009 ECONDA GmbH Karlsruhe
+Copyright (c) 2004 - 2011 ECONDA GmbH Karlsruhe
 All rights reserved.
 
 ECONDA GmbH
@@ -41,6 +41,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Changes:
 
 $Log: emos.php,v $
+Revision 1.19  2011/07/08 14:23:00 egaiser
+changes in target data format
+changes in marker data format
+
+Revision 1.18  2011/04/08 15:42:00 egaiser
+check if function emosPropertiesEvent exists
+
+Revision 1.17  2010/02/02 16:04:00 egaiser
+changes in properties data format
+
+Revision 1.16  2009/12/16 14:38:00 egaiser
+several bugfixes
+ 
 Revision 1.15  2009/11/17 13:24:00 egaiser
 update to handle anchor tags and properties array 
 added function trackMode to switch between anchor tags and properties array
@@ -124,13 +137,19 @@ class EMOS {
     var $jsStart = "<script type=\"text/javascript\">\n//<![CDATA[\n    var emospro = {};\n";
 
     /* end js and fire properties */
-    var $jsEnd = "    window.emosPropertiesEvent(emospro);\n//]]>\n</script>\n";
+    var $jsEnd = "    if(typeof(window.emosPropertiesEvent) == 'function') {\n        window.emosPropertiesEvent(emospro);\n    }\n//]]>\n</script>\n";
     
     /* emos2 inclusion */
     var $emosBib = "";
     
     /* ec_event */
     var $ecString = "";
+    
+    /* target_event */
+    var $tgString = "";
+    
+    /* marker_event */
+    var $mkString = "";        
     
     /* remove cdata */
     var $rmvCdata = true;
@@ -154,8 +173,8 @@ class EMOS {
     var $emosDebug = 0;
 
     /* CSS Style and Div for Debug */
-    var $debugOut = "\n<script type=\"text/javascript\">\n   function hideEcondaDebug(){\n      document.getElementById(\"econdaDebugTxt\").style.visibility = \"hidden\";\n      document.getElementById(\"econdaDebugStat\").style.visibility = \"hidden\";\n      document.getElementById(\"econdaDebug\").style.width = \"35px\";\n      document.getElementById(\"econdaDebug\").style.height = \"15px\";\n      document.getElementById(\"econdaDebugShow\").style.visibility = \"visible\";\n   }\n   function showEcondaDebug(){\n      document.getElementById(\"econdaDebugTxt\").style.visibility = \"visible\";\n      document.getElementById(\"econdaDebugStat\").style.visibility = \"visible\";\n      document.getElementById(\"econdaDebug\").style.width = \"auto\";\n      document.getElementById(\"econdaDebug\").style.height = \"auto\";\n      document.getElementById(\"econdaDebugShow\").style.visibility = \"hidden\";\n   }\n   function econdaDebug(dbtxt){\n      document.getElementById(\"econdaDebugTxt\").innerHTML = dbtxt;\n   }\n</script>\n<div name=\"econdaDebug\" id=\"econdaDebug\" style=\"position:absolute; visibility: visible; font-family: sans-serif; font-size: 12px; color: #FFFFFF; background-color: #0088B2; left: 0px; top: 0px; width: auto; height: auto; padding: 3px; z-index: 1000;\">\n<textarea style=\"min-width: 760px; font-family: sans-serif; font-size: 13px; background-color: #FFFFFF;\" name=\"econdaDebugTxt\" id=\"econdaDebugTxt\" wrap=\"off\" cols=\"120\" rows=\"22\">\n";                               
-    var $debugEnd = "</textarea>\n<div name=\"econdaDebugStat\" id=\"econdaDebugStat\" style=\"cursor: pointer; padding: 1px;\" align=\"right\" onClick=\"javascript:hideEcondaDebug();\">[econda debug mode]&nbsp;&nbsp;HIDE</div>\n<div name=\"econdaDebugShow\" id=\"econdaDebugShow\" style=\"position: absolute; visibility: hidden; top: 0px; left: 0px; cursor: pointer; z-index: 1001;\" onClick=\"javascript:showEcondaDebug();\">SHOW</div>\n</div>\n\n";
+    var $debugOut = "\n<script type=\"text/javascript\">\n   function hideEcondaDebug(){\n      document.getElementById(\"econdaDebugTxt\").style.visibility = \"hidden\";\n      document.getElementById(\"econdaDebugStat\").style.visibility = \"hidden\";\n      document.getElementById(\"econdaDebug\").style.width = \"35px\";\n      document.getElementById(\"econdaDebug\").style.height = \"15px\";\n      document.getElementById(\"econdaDebugShow\").style.visibility = \"visible\";\n   }\n   function showEcondaDebug(){\n      document.getElementById(\"econdaDebugTxt\").style.visibility = \"visible\";\n      document.getElementById(\"econdaDebugStat\").style.visibility = \"visible\";\n      document.getElementById(\"econdaDebug\").style.width = \"auto\";\n      document.getElementById(\"econdaDebug\").style.height = \"auto\";\n      document.getElementById(\"econdaDebugShow\").style.visibility = \"hidden\";\n   }\n   function econdaDebug(dbtxt){\n      document.getElementById(\"econdaDebugTxt\").innerHTML = dbtxt;\n   }\n</script>\n<div name=\"econdaDebug\" id=\"econdaDebug\" style=\"position:absolute; visibility: visible; font-family: sans-serif; font-size: 12px; color: #FFFFFF; background-color: #0088B2; left: 0px; top: 0px; width: auto; height: auto; padding: 3px; z-index: 10000;\">\n<textarea style=\"min-width: 760px; font-family: sans-serif; font-size: 13px; background-color: #FFFFFF;\" name=\"econdaDebugTxt\" id=\"econdaDebugTxt\" wrap=\"off\" cols=\"120\" rows=\"22\">\n";                               
+    var $debugEnd = "</textarea>\n<div name=\"econdaDebugStat\" id=\"econdaDebugStat\" style=\"cursor: pointer; padding: 1px;\" align=\"right\" onClick=\"javascript:hideEcondaDebug();\">[econda debug mode]&nbsp;&nbsp;HIDE</div>\n<div name=\"econdaDebugShow\" id=\"econdaDebugShow\" style=\"position: absolute; visibility: hidden; top: 0px; left: 0px; cursor: pointer; z-index: 10001;\" onClick=\"javascript:showEcondaDebug();\">SHOW</div>\n</div>\n\n";
         
     /*
      * add compatibility function for php < 5.1
@@ -235,12 +254,11 @@ class EMOS {
             $str = rawurlencode($str);
         }
         else {
-            $str = utf8_decode($str);
-            $str = html_entity_decode($str);
+            $str = utf8_decode($str);             
+            $str = html_entity_decode($str);  
             $str = strip_tags($str);
-            $str = utf8_encode($str);
-            $str = addcslashes($str, "\\\"'&<>]");
-            $str = trim($str);
+            $str = addcslashes($str, "\\\"'&<>]-\x00..\x1F\x80..\xFF");
+            $str = trim($str);   
         }
         return $str;
     }
@@ -300,8 +318,22 @@ class EMOS {
             else {
                 $this->ecString = "";
             }
+            if($this->tgString != ""){
+                $this->tgString = substr($this->tgString,0,-2)."\n";
+                $this->tgString .= "    ];\n";
+            }
+            else {
+                $this->tgString = "";
+            }
+            if($this->mkString != ""){
+                $this->mkString = substr($this->mkString,0,-2)."\n";
+                $this->mkString .= "    ];\n";
+            }
+            else {
+                $this->mkString = "";
+            }                         
             if(!$this->emosFire) {
-                $this->jsEnd = str_replace("    window.emosPropertiesEvent(emospro);\n","",$this->jsEnd);
+                $this->jsEnd = str_replace("    if(typeof(window.emosPropertiesEvent) == 'function') {\n        window.emosPropertiesEvent(emospro);\n    }\n","",$this->jsEnd);
             }            
             if($this->rmvCdata) {
                 $this->jsStart = str_replace("\n//<![CDATA[","",$this->jsStart);
@@ -321,18 +353,18 @@ class EMOS {
                 $this->ecString = str_replace("\n//]]>","",$this->ecString);                
             }            
             if($this->emosDebug > 0) {
-                $this->retString .= $this->debugOut . $this->preScript . $this->postScript . $this->ecString . $this->emosBib . $this->inScript . $this->debugEnd;  
+                $this->retString .= $this->debugOut . $this->preScript . $this->postScript . $this->tgString . $this->mkString . $this->ecString . $this->emosBib . $this->inScript . $this->debugEnd;  
             }
             if($this->emosDebug == 0 || $this->emosDebug == 2){
-                $this->retString .= $this->preScript . $this->postScript . $this->ecString . $this->emosBib . $this->inScript;
+                $this->retString .= $this->preScript . $this->postScript . $this->tgString . $this->mkString . $this->ecString . $this->emosBib . $this->inScript;
             }
         }
         else {
             if($this->emosDebug > 0) {
-                $this->retString .= $this->debugOut . $this->emosStopRequest . $this->emosBib . $this->jsStart . $this->preScript . $this->ecString . $this->postScript . $this->jsEnd . $this->inScript . $this->debugEnd; 
+                $this->retString .= $this->debugOut . $this->emosStopRequest . $this->emosBib . $this->jsStart . $this->preScript . $this->tgString . $this->mkString . $this->ecString . $this->postScript . $this->jsEnd . $this->inScript . $this->debugEnd; 
             }
             if($this->emosDebug == 0 || $this->emosDebug == 2){
-                $this->retString .= $this->emosStopRequest . $this->emosBib . $this->jsStart . $this->preScript . $this->ecString . $this->postScript . $this->jsEnd . $this->inScript;    
+                $this->retString .= $this->emosStopRequest . $this->emosBib . $this->jsStart . $this->preScript . $this->tgString . $this->mkString . $this->ecString . $this->postScript . $this->jsEnd . $this->inScript;    
             }    
         }
         return $this->retString;
@@ -387,18 +419,36 @@ class EMOS {
             $out .= "    emosCustomPageArray[3] = '".number_format($worth,1)."';\n";
             $out .= "    emosCustomPageArray[4] = '".$calc."';\n";
             $out .= "//]]>\n</script>\n";
+            return $out;
         }
         else {
-            $out = "    emospro.Target = [['".$rel."','".$rev."',".number_format($worth,1).",'".$calc."']];\n";
+            if($this->tgString == "") {
+              $this->tgString .= "    emospro.Target = [\n";
+            }
+            $this->tgString .= "       ['".$rel."','".$rev."',".number_format($worth,1).",'".$calc."'],\n";
         }
-        return $out;
-    }    
+    }
+
+    /* constructs a js property event for Marker */    
+    function getPropertyMarker($rel = "") {
+        $rel = $this->emos_DataFormat($rel);
+        if($this->anchorTags) {
+            $out = "<a name=\"emos_name\" title=\"marker\" rel=\"".$rel."\" rev=\"\"></a>\n";
+            return $out;
+        }
+        else {
+            if($this->mkString == "") {
+              $this->mkString .= "    emospro.marker = [\n";
+            }
+            $this->mkString .= "       ['".$rel."'],\n";
+        }
+    }           
 
     /* adds a property event for marker tracking
     *  emospro.marker = content
     */
     function addMarker($content) {
-        $this->appendPreScript($this->getProperty("marker", $content, "", true));
+        $this->appendPreScript($this->getPropertyMarker($content));
     }
  
     /* adds a property event for target tracking

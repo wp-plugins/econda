@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: econda\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-22 12:53+0100\n"
+"POT-Creation-Date: 2011-08-04 11:40+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Edgar Gaiser <gaiser@econda.de>\n"
 "Language-Team: Edgar Gaiser <gaiser@econda.de>\n"
@@ -14,43 +14,69 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: C:\\doc\\wordpress\\econda\n"
 
-#: C:\doc\wordpress\econda/econda.php:119
+#: C:\doc\wordpress\econda/econda.php:149
+#: C:\doc\wordpress\econda/econda_alt.php:119
 msgid "econda Settings"
 msgstr "econda Einstellungen"
 
-#: C:\doc\wordpress\econda/econda.php:123
+#: C:\doc\wordpress\econda/econda.php:153
+#: C:\doc\wordpress\econda/econda_alt.php:123
 msgid "Site ID"
 msgstr "Seiten ID"
 
-#: C:\doc\wordpress\econda/econda.php:125
+#: C:\doc\wordpress\econda/econda.php:155
+#: C:\doc\wordpress\econda/econda_alt.php:125
 msgid "If you have a econda monitor with multi-site feature, you can set an individual value for this blog here."
 msgstr "Wenn Sie einen econda Monitor mit Multisite-Funktion gebucht haben, können Sie hier einen individuellen Wert für diesen Blog setzen."
 
-#: C:\doc\wordpress\econda/econda.php:128
+#: C:\doc\wordpress\econda/econda.php:158
+msgid "Optional Tracking Values"
+msgstr "Optionale Tracking Parameter"
+
+#: C:\doc\wordpress\econda/econda.php:160
+msgid "Use markers to measure post tags."
+msgstr "Marker verwenden um Post Tags zu messen."
+
+#: C:\doc\wordpress\econda/econda.php:163
+msgid "Use markers to measure post categories."
+msgstr "Marker verwenden um Post Kategorien zu messen."
+
+#: C:\doc\wordpress\econda/econda.php:166
+msgid "Use targets to measure new comments."
+msgstr "Ziele verwenden um neue Kommentare zu messen."
+
+#: C:\doc\wordpress\econda/econda.php:169
+#: C:\doc\wordpress\econda/econda_alt.php:128
 msgid "Debug mode"
 msgstr "Debug Modus"
 
-#: C:\doc\wordpress\econda/econda.php:130
+#: C:\doc\wordpress\econda/econda.php:171
+#: C:\doc\wordpress\econda/econda_alt.php:130
 msgid "Do not use this option if your site is in Live mode! This option will display the generated code directly on your page."
 msgstr "Verwenden Sie diese Option nicht, wenn sich Ihre Seite im Live-Betrieb befindet! Damit wird der generierte econda Code direkt auf der Seite ausgegeben."
 
-#: C:\doc\wordpress\econda/econda.php:133
+#: C:\doc\wordpress\econda/econda.php:174
+#: C:\doc\wordpress\econda/econda_alt.php:133
 msgid "Activate econda"
 msgstr "econda aktivieren"
 
-#: C:\doc\wordpress\econda/econda.php:135
+#: C:\doc\wordpress\econda/econda.php:176
+#: C:\doc\wordpress\econda/econda_alt.php:135
 msgid "Thus econda can record your data, copy the file \"emos2.js\", which you received within the activation e-mail to the Wordpress directory \"wp-content/plugins/econda\"."
 msgstr "Damit econda Ihre Daten erfassen kann, muss die Datei \"emos2.js\", welche Sie mit der Aktivierungs-E-Mail erhalten haben, in das Wordpress Verzeichnis \"wp-content/plugins/econda\" kopiert werden."
 
-#: C:\doc\wordpress\econda/econda.php:140
+#: C:\doc\wordpress\econda/econda.php:181
+#: C:\doc\wordpress\econda/econda_alt.php:140
 msgid "Save Changes"
 msgstr "Änderungen übernehmen"
 
-#: C:\doc\wordpress\econda/econda.php:146
+#: C:\doc\wordpress\econda/econda.php:187
+#: C:\doc\wordpress\econda/econda_alt.php:146
 msgid "econda is one of the leading specialists for intelligent web analysis. <br />For your Wordpress blog you can choose between the econda Site Monitor or econda Click Monitor.<br /><br />For further informations visit <a href=\"http://www.econda.de\" target=\"_blank\">econda</a>.<br />Try the econda Site Monitor now free of charge for 14 days! <a href=\"http://www.econda.de/produkte/site-monitor/testen.html\" target=\"_blank\">Test now!</a>"
 msgstr "econda ist einer der führenden Spezialisten für intelligente Web-Analysen. <br />Für Ihren Wordpress Blog stehen der econda Site Monitor und der econda Click Monitor für Sie bereit. <br /><br />Weitere Informationen finden Sie auf der <a href=\"http://www.econda.de\" target=\"_blank\">econda Webseite</a>. <br />Testen Sie jetzt unverbindlich und kostenlos für 14 Tage den econda Site Monitor! <a href=\"http://www.econda.de/produkte/site-monitor/testen.html\" target=\"_blank\">Jetzt testen!</a>"
 
-#: C:\doc\wordpress\econda/econda.php:169
+#: C:\doc\wordpress\econda/econda.php:212
+#: C:\doc\wordpress\econda/econda_alt.php:169
 msgid "Settings"
 msgstr "Einstellungen"
 
