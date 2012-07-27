@@ -3,7 +3,7 @@
 Plugin Name: econda
 Plugin URI: http://www.econda.de/
 Description: This plugin enables econda analytics on your site. econda is one of the leading specialists for intelligent web analysis. (D) Dieses Plugin erm&ouml;glicht econda Analysen auf Ihrem Online-Auftritt. econda ist einer der f&uuml;hrenden Spezialisten f&uuml;r intelligente Web-Analysen. (<a href="http://www.econda.de/">Visit econda</a>)
-Version: 1.1.0
+Version: 1.1.1
 Author: Edgar Gaiser
 Author URI: http://www.econda.de/
 */
@@ -104,8 +104,8 @@ class econda {
 
         //search
         if(is_search()) {
-            $phrase = $_GET['s'];
-            $hits = $wp_query->post_count;
+            $phrase = $wp_query->query_vars['s'];
+            $hits = $wp_query->found_posts;
             $emos->addSearch($phrase, $hits);
         }
          
