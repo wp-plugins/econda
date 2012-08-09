@@ -25,6 +25,10 @@ Testen Sie jetzt unverbindlich und kostenlos f&uuml;r 14 Tage den econda Site Mo
 
 == Changelog ==
 
+= 1.1.2 =
+
+* bugfix
+
 = 1.1.1 =
 
 * adapted search
